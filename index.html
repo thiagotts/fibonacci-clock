@@ -2,13 +2,21 @@
 <html>
   
   <head>
-    <link rel="stylesheet" href="fibonacci-clock.css">
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
   </head>
   
-  <body onresize="drawClock()">
-    <canvas id="myCanvas"></canvas>
-    <script src="fibonacci-clock.js"></script>
-    <script>drawClock();</script>
+  <body onresize="application.refresh();">
+    <canvas id="canvas"></canvas>
+    <script src="js/fibonacci-clock.js"></script>
+    <script>
+      var application = new Application();
+      application.start();
+    </script>
   </body>
 
 </html>
