@@ -26,4 +26,8 @@ class Clock {
 	private countAsHour(state: SquareState): boolean {
 		return state == SquareState.Blue || state == SquareState.Red;
 	}
+	
+	private countAsMinutes(state: SquareState): boolean {
+		return state == SquareState.Blue || state == SquareState.Green;
+	}
 }
