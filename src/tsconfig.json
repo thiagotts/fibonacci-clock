@@ -9,7 +9,8 @@
     },
     "files": [
         "Square.ts",
-        "Clock.ts",        
+        "Clock.ts",
+        "SquareState.ts",
         "Application.ts"
     ]
 }

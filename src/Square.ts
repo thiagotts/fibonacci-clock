@@ -1,5 +1,11 @@
+/// <reference path="SquareState.ts"/>
+
 class Square {
-	constructor(public xAxis: number, public yAxis: number, public length: number) { }
+	public state: SquareState;
+	
+	constructor(public xAxis: number, public yAxis: number, public length: number) {
+		this.state = SquareState.Off;
+	}
 
 	public draw(context: CanvasRenderingContext2D): void {
 		context.beginPath();
@@ -9,9 +15,5 @@ class Square {
 		context.lineWidth = 1;
 		context.strokeStyle = 'black';
 		context.stroke();
-	}
-	
-	public getX(): number {
-		return this.xAxis;
 	}
 }
