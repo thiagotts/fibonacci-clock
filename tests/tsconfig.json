@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "out": "js/fibonacci-clock-tests.js",
+        "sourceMap": true
+    },
+    "files": [
+        "SquareTests.ts"
+    ]
+}

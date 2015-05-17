@@ -1,5 +1,8 @@
+/// <reference path="tsd/jasmine.d.ts"/>
+/// <reference path="../src/Square.ts"/>
+
 describe("Square", function() {
-  var square;
+  var square: Square;
 
   beforeEach(function() {
     square = new Square(1, 2, 3);
