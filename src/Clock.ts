@@ -22,4 +22,8 @@ class Clock {
 		this.squareThree.draw(this.context);
 		this.squareFive.draw(this.context);
 	}
+	
+	private countAsHour(state: SquareState): boolean {
+		return state == SquareState.Blue || state == SquareState.Red;
+	}
 }

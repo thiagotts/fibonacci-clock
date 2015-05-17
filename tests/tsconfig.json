@@ -8,6 +8,7 @@
         "sourceMap": true
     },
     "files": [
-        "SquareTests.ts"
+        "SquareTests.ts",
+        "ClockTests.ts"        
     ]
 }
