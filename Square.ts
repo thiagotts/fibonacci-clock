@@ -10,4 +10,8 @@ class Square {
 		context.strokeStyle = 'black';
 		context.stroke();
 	}
+	
+	public getX(): number {
+		return this.xAxis;
+	}
 }

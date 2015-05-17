@@ -13,6 +13,9 @@ var Square = (function () {
         context.strokeStyle = 'black';
         context.stroke();
     };
+    Square.prototype.getX = function () {
+        return this.xAxis;
+    };
     return Square;
 })();
 /// <reference path="Square.ts"/>
