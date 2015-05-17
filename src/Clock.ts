@@ -22,11 +22,31 @@ class Clock {
 		this.squareThree.draw(this.context);
 		this.squareFive.draw(this.context);
 	}
-	
+
+	public getHour(): number {
+		var hourValue = 0;
+		hourValue += this.countAsHour(this.upperSquareOne.state) ? 1 : 0;
+		hourValue += this.countAsHour(this.bottomSquareOne.state) ? 1 : 0;
+		hourValue += this.countAsHour(this.squareTwo.state) ? 2 : 0;
+		hourValue += this.countAsHour(this.squareThree.state) ? 3 : 0;
+		hourValue += this.countAsHour(this.squareFive.state) ? 5 : 0;
+		return hourValue;
+	}
+
+	public getMinutes(): number {
+		var minuteValue = 0;
+		minuteValue += this.countAsMinutes(this.upperSquareOne.state) ? 1 : 0;
+		minuteValue += this.countAsMinutes(this.bottomSquareOne.state) ? 1 : 0;
+		minuteValue += this.countAsMinutes(this.squareTwo.state) ? 2 : 0;
+		minuteValue += this.countAsMinutes(this.squareThree.state) ? 3 : 0;
+		minuteValue += this.countAsMinutes(this.squareFive.state) ? 5 : 0;
+		return minuteValue * 5;
+	}
+
 	private countAsHour(state: SquareState): boolean {
 		return state == SquareState.Blue || state == SquareState.Red;
 	}
-	
+
 	private countAsMinutes(state: SquareState): boolean {
 		return state == SquareState.Blue || state == SquareState.Green;
 	}
