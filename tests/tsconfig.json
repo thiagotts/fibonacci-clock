@@ -9,6 +9,6 @@
     },
     "files": [
         "SquareTests.ts",
-        "ClockTests.ts"        
+        "ClockStateTests.ts"        
     ]
 }
