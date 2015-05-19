@@ -1,4 +1,5 @@
 /// <reference path="extensions/EnumExtensions.ts"/>
+/// <reference path="extensions/IDictionary.ts"/>
 /// <reference path="SquareState.ts"/>
 
 class Application {
@@ -7,11 +8,11 @@ class Application {
 	private unitSize: number;
 	private sizeFactor: number = 0.15;
 	private context2d: CanvasRenderingContext2D;
-	private clockStates: ClockState[];
+	private timeDictionary: IDictionary<IDictionary<ClockState>>;
 
 	constructor() {
 		this.setUpDimensions();
-		this.clockStates = this.getClockStates();
+		//this.fillTimeDictionary();
 	}
 
 	private setUpDimensions(): void {
@@ -38,6 +39,23 @@ class Application {
 		this.setUpDimensions();
 		this.start();
 	}
+
+	private fillTimeDictionary(): void {
+		throw new Error("Not implemented yet.");
+	}
+	
+	private createTimeDictionary(): void {
+		var hours = this.getHours();
+		var minutes = this.getMinutes();
+		
+		this.timeDictionary = {};
+		for(var i1 = 0; i1 < hours.length; i1++) {
+			this.timeDictionary[i1.toString()] = {};			
+			for(var i2 = 0; i2 < minutes.length; i2++) {
+				this.timeDictionary[i1.toString()][i2.toString()] = null;
+			}
+		}
+	}	
 
 	private getClockStates(): ClockState[] {
 		var states: ClockState[] = [];
@@ -69,5 +87,23 @@ class Application {
 		}
 
 		return states;
+	}
+
+	private getHours(): number[] {
+		var hours: number[] = [];
+		for (var index = 0; index < 13; index++) {
+			hours[index] = index;
+		}
+		
+		return hours;
+	}
+
+	private getMinutes(): number[] {
+		var minutes: number[] = [];
+		for (var index = 0; index < 12; index++) {
+			minutes[index] = index * 5;
+		}
+
+		return minutes;
 	}
 }
