@@ -8,11 +8,11 @@ class Application {
 	private unitSize: number;
 	private sizeFactor: number = 0.15;
 	private context2d: CanvasRenderingContext2D;
-	private timeDictionary: IDictionary<IDictionary<ClockState>>;
+	public timeDictionary: IDictionary<IDictionary<ClockState[]>>;
 
 	constructor() {
 		this.setUpDimensions();
-		//this.fillTimeDictionary();
+		this.fillTimeDictionary();
 	}
 
 	private setUpDimensions(): void {
@@ -41,21 +41,33 @@ class Application {
 	}
 
 	private fillTimeDictionary(): void {
-		throw new Error("Not implemented yet.");
+		this.createTimeDictionary();
+		var clockStates = this.getClockStates();
+
+		for (var index = 0; index < clockStates.length; index++) {
+			var state = clockStates[index];
+			var hour = state.getHour();
+			var minutes = state.getMinutes() / 5;
+
+			var time = this.timeDictionary[hour.toString()][minutes.toString()];
+			if (time == null) continue;
+
+			time.push(state);
+		}
 	}
-	
+
 	private createTimeDictionary(): void {
 		var hours = this.getHours();
 		var minutes = this.getMinutes();
-		
+
 		this.timeDictionary = {};
-		for(var i1 = 0; i1 < hours.length; i1++) {
-			this.timeDictionary[i1.toString()] = {};			
-			for(var i2 = 0; i2 < minutes.length; i2++) {
-				this.timeDictionary[i1.toString()][i2.toString()] = null;
+		for (var i1 = 0; i1 < hours.length; i1++) {
+			this.timeDictionary[i1.toString()] = {};
+			for (var i2 = 0; i2 < minutes.length; i2++) {
+				this.timeDictionary[i1.toString()][i2.toString()] = [];
 			}
 		}
-	}	
+	}
 
 	private getClockStates(): ClockState[] {
 		var states: ClockState[] = [];
@@ -94,7 +106,7 @@ class Application {
 		for (var index = 0; index < 13; index++) {
 			hours[index] = index;
 		}
-		
+
 		return hours;
 	}
 
