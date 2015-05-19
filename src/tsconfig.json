@@ -8,6 +8,7 @@
         "sourceMap": true
     },
     "files": [
+        "extensions/EnumExtensions.ts",
         "Square.ts",
         "SquareState.ts",        
         "ClockState.ts", 

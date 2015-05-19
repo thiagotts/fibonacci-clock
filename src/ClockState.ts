@@ -1,17 +1,16 @@
 /// <reference path="SquareState.ts"/>
 
 class ClockState {
-	public UpperSquareOne: SquareState;
-	public BottomSquareOne: SquareState;
-	public SquareTwo: SquareState;
-	public SquareThree: SquareState;
-	public SquareFive: SquareState;
 	private hour: number;
 	private minutes: number;
-	
+
+	constructor(public UpperSquareOne: SquareState, public BottomSquareOne: SquareState,
+		public SquareTwo: SquareState, public SquareThree: SquareState, public SquareFive: SquareState) { }
+
+
 	public getHour(): number {
-		if(this.hour) return this.hour;
-		
+		if (this.hour) return this.hour;
+
 		this.hour = 0;
 		this.hour += this.countAsHour(this.UpperSquareOne) ? 1 : 0;
 		this.hour += this.countAsHour(this.BottomSquareOne) ? 1 : 0;
@@ -37,5 +36,5 @@ class ClockState {
 
 	private countAsMinutes(state: SquareState): boolean {
 		return state == SquareState.Blue || state == SquareState.Green;
-	}	
+	}
 }
