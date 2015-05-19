@@ -15,11 +15,16 @@ class Clock {
 		this.squareFive = new Square(unitSize * 3, 0, unitSize * 5);
 	}
 
-	public drawClock(): void {
-		this.upperSquareOne.draw(this.context);
-		this.bottomSquareOne.draw(this.context);
-		this.squareTwo.draw(this.context);
-		this.squareThree.draw(this.context);
-		this.squareFive.draw(this.context);
+	public drawClock(clockState: ClockState): void {
+		this.drawSquare(this.upperSquareOne, clockState.upperSquareOne);
+		this.drawSquare(this.bottomSquareOne, clockState.bottomSquareOne);
+		this.drawSquare(this.squareTwo, clockState.squareTwo);
+		this.drawSquare(this.squareThree, clockState.squareThree);
+		this.drawSquare(this.squareFive, clockState.squareFive);
+	}
+	
+	private drawSquare(square: Square, squareState: SquareState) {
+		square.state = squareState;
+		square.draw(this.context);		
 	}
 }

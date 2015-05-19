@@ -73,11 +73,11 @@ describe("getHour and getMinutes methods should return values based on square st
   var clockState = new ClockState(SquareState.Off, SquareState.Off, SquareState.Off, SquareState.Off, SquareState.Off);
 
   it("Test case: 0:50", function() {
-    clockState.UpperSquareOne = SquareState.Off;
-    clockState.BottomSquareOne = SquareState.Off;
-    clockState.SquareTwo = SquareState.Green;
-    clockState.SquareThree = SquareState.Green;
-    clockState.SquareFive = SquareState.Green;
+    clockState.upperSquareOne = SquareState.Off;
+    clockState.bottomSquareOne = SquareState.Off;
+    clockState.squareTwo = SquareState.Green;
+    clockState.squareThree = SquareState.Green;
+    clockState.squareFive = SquareState.Green;
 
     var hour = clockState.getHour();
     var minutes = clockState.getMinutes();
@@ -87,11 +87,11 @@ describe("getHour and getMinutes methods should return values based on square st
   });
 
   it("Test case: 8:35", function() {
-    clockState.UpperSquareOne = SquareState.Off;
-    clockState.BottomSquareOne = SquareState.Off;
-    clockState.SquareTwo = SquareState.Green;
-    clockState.SquareThree = SquareState.Red;
-    clockState.SquareFive = SquareState.Blue;
+    clockState.upperSquareOne = SquareState.Off;
+    clockState.bottomSquareOne = SquareState.Off;
+    clockState.squareTwo = SquareState.Green;
+    clockState.squareThree = SquareState.Red;
+    clockState.squareFive = SquareState.Blue;
 
     var hour = clockState.getHour();
     var minutes = clockState.getMinutes();

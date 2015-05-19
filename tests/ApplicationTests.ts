@@ -5,7 +5,7 @@
 
 describe("Generation of clock states.", function() {
   var application = new Application();
-  var clockStates: ClockState[] = application.getClockStates();
+  var clockStates: ClockState[] = application.createClockStates();
 
   it("It must create 1024 clock states.", function() {
     expect(clockStates.length).toBe(1024);
@@ -18,11 +18,11 @@ describe("Generation of clock states.", function() {
 
       for (var index2 = 0; index2 < clockStates.length; index2++) {
         var element = clockStates[index2];
-        if (element.UpperSquareOne === state.UpperSquareOne &&
-          element.BottomSquareOne === state.BottomSquareOne &&
-          element.SquareTwo === state.SquareTwo &&
-          element.SquareThree === state.SquareThree &&
-          element.SquareFive === state.SquareFive) {
+        if (element.upperSquareOne === state.upperSquareOne &&
+          element.bottomSquareOne === state.bottomSquareOne &&
+          element.squareTwo === state.squareTwo &&
+          element.squareThree === state.squareThree &&
+          element.squareFive === state.squareFive) {
           count++;
         }
       }

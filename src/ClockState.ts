@@ -4,29 +4,29 @@ class ClockState {
 	private hour: number;
 	private minutes: number;
 
-	constructor(public UpperSquareOne: SquareState, public BottomSquareOne: SquareState,
-		public SquareTwo: SquareState, public SquareThree: SquareState, public SquareFive: SquareState) { }
+	constructor(public upperSquareOne: SquareState, public bottomSquareOne: SquareState,
+		public squareTwo: SquareState, public squareThree: SquareState, public squareFive: SquareState) { }
 
 
 	public getHour(): number {
 		if (this.hour) return this.hour;
 
 		this.hour = 0;
-		this.hour += this.countAsHour(this.UpperSquareOne) ? 1 : 0;
-		this.hour += this.countAsHour(this.BottomSquareOne) ? 1 : 0;
-		this.hour += this.countAsHour(this.SquareTwo) ? 2 : 0;
-		this.hour += this.countAsHour(this.SquareThree) ? 3 : 0;
-		this.hour += this.countAsHour(this.SquareFive) ? 5 : 0;
+		this.hour += this.countAsHour(this.upperSquareOne) ? 1 : 0;
+		this.hour += this.countAsHour(this.bottomSquareOne) ? 1 : 0;
+		this.hour += this.countAsHour(this.squareTwo) ? 2 : 0;
+		this.hour += this.countAsHour(this.squareThree) ? 3 : 0;
+		this.hour += this.countAsHour(this.squareFive) ? 5 : 0;
 		return this.hour;
 	}
 
 	public getMinutes(): number {
 		var minuteValue = 0;
-		minuteValue += this.countAsMinutes(this.UpperSquareOne) ? 1 : 0;
-		minuteValue += this.countAsMinutes(this.BottomSquareOne) ? 1 : 0;
-		minuteValue += this.countAsMinutes(this.SquareTwo) ? 2 : 0;
-		minuteValue += this.countAsMinutes(this.SquareThree) ? 3 : 0;
-		minuteValue += this.countAsMinutes(this.SquareFive) ? 5 : 0;
+		minuteValue += this.countAsMinutes(this.upperSquareOne) ? 1 : 0;
+		minuteValue += this.countAsMinutes(this.bottomSquareOne) ? 1 : 0;
+		minuteValue += this.countAsMinutes(this.squareTwo) ? 2 : 0;
+		minuteValue += this.countAsMinutes(this.squareThree) ? 3 : 0;
+		minuteValue += this.countAsMinutes(this.squareFive) ? 5 : 0;
 		return minuteValue * 5;
 	}
 

@@ -32,7 +32,7 @@ class Application {
 		this.context2d.clearRect(0, 0, canvas.width, canvas.height);
 
 		var clock = new Clock(this.context2d, this.unitSize);
-		clock.drawClock();
+		clock.drawClock(this.getCurrentClockState());
 	}
 
 	public refresh(): void {
@@ -40,9 +40,20 @@ class Application {
 		this.start();
 	}
 
+	private getCurrentClockState(): ClockState {
+		var currentDate = new Date();
+		var hour = currentDate.getHours();
+		hour = (hour == 12 ? 12 : hour % 12);
+		var minutes = Math.floor(currentDate.getMinutes() / 5);
+		
+		var clockStates = this.timeDictionary[hour.toString()][minutes.toString()];
+		var index = Math.floor((Math.random() * clockStates.length));
+		return clockStates[index];
+	}
+
 	private fillTimeDictionary(): void {
 		this.createTimeDictionary();
-		var clockStates = this.getClockStates();
+		var clockStates = this.createClockStates();
 
 		for (var index = 0; index < clockStates.length; index++) {
 			var state = clockStates[index];
@@ -69,7 +80,7 @@ class Application {
 		}
 	}
 
-	private getClockStates(): ClockState[] {
+	private createClockStates(): ClockState[] {
 		var states: ClockState[] = [];
 		var index = 0;
 
