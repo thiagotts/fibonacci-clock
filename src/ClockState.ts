@@ -21,13 +21,20 @@ class ClockState {
 	}
 
 	public getMinutes(): number {
-		var minuteValue = 0;
-		minuteValue += this.countAsMinutes(this.upperSquareOne) ? 1 : 0;
-		minuteValue += this.countAsMinutes(this.bottomSquareOne) ? 1 : 0;
-		minuteValue += this.countAsMinutes(this.squareTwo) ? 2 : 0;
-		minuteValue += this.countAsMinutes(this.squareThree) ? 3 : 0;
-		minuteValue += this.countAsMinutes(this.squareFive) ? 5 : 0;
-		return minuteValue * 5;
+		if (this.minutes) return this.minutes;
+		
+		this.minutes = 0;
+		this.minutes += this.countAsMinutes(this.upperSquareOne) ? 1 : 0;
+		this.minutes += this.countAsMinutes(this.bottomSquareOne) ? 1 : 0;
+		this.minutes += this.countAsMinutes(this.squareTwo) ? 2 : 0;
+		this.minutes += this.countAsMinutes(this.squareThree) ? 3 : 0;
+		this.minutes += this.countAsMinutes(this.squareFive) ? 5 : 0;
+		return this.minutes * 5;
+	}
+
+	public sameTimeAs(time: Time): boolean {
+		return time.hour === this.hour &&
+			time.minutes === this.minutes;
 	}
 
 	private countAsHour(state: SquareState): boolean {

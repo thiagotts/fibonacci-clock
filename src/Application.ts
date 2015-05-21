@@ -1,14 +1,16 @@
 /// <reference path="extensions/EnumExtensions.ts"/>
 /// <reference path="extensions/IDictionary.ts"/>
 /// <reference path="SquareState.ts"/>
+/// <reference path="Time.ts"/>
 
 class Application {
+	private static unitSize: number;
+	private static context2d: CanvasRenderingContext2D;
+	public static timeDictionary: IDictionary<IDictionary<ClockState[]>>;
+	public static currentClockState: ClockState;
 	private width: number;
 	private height: number;
-	private unitSize: number;
 	private sizeFactor: number = 0.15;
-	private context2d: CanvasRenderingContext2D;
-	public timeDictionary: IDictionary<IDictionary<ClockState[]>>;
 
 	constructor() {
 		this.setUpDimensions();
@@ -18,37 +20,54 @@ class Application {
 	private setUpDimensions(): void {
 		this.width = document.documentElement.clientWidth;
 		this.height = document.documentElement.clientHeight;
-		this.unitSize = this.width < this.height ? (this.width * this.sizeFactor) : (this.height * this.sizeFactor);
+		Application.unitSize = this.width < this.height ? (this.width * this.sizeFactor) : (this.height * this.sizeFactor);
 	}
 
 	public start(): void {
 		var canvas = <HTMLCanvasElement>document.getElementById('canvas');
-		canvas.width = this.unitSize * 8;
-		canvas.height = this.unitSize * 5;
-		canvas.style.marginTop = ((this.height - (this.unitSize * 5)) / 2) + "px";
-		canvas.style.marginLeft = ((this.width - (this.unitSize * 8)) / 2) + "px";
+		canvas.width = Application.unitSize * 8;
+		canvas.height = Application.unitSize * 5;
+		canvas.style.marginTop = ((this.height - (Application.unitSize * 5)) / 2) + "px";
+		canvas.style.marginLeft = ((this.width - (Application.unitSize * 8)) / 2) + "px";
 
-		this.context2d = <CanvasRenderingContext2D>canvas.getContext('2d');
-		this.context2d.clearRect(0, 0, canvas.width, canvas.height);
+		Application.context2d = <CanvasRenderingContext2D>canvas.getContext('2d');
+		Application.context2d.clearRect(0, 0, canvas.width, canvas.height);
 
-		var clock = new Clock(this.context2d, this.unitSize);
-		clock.drawClock(this.getCurrentClockState());
+		Application.drawClock();
 	}
 
 	public refresh(): void {
 		this.setUpDimensions();
 		this.start();
+
+		var clock = new Clock(Application.context2d, Application.unitSize);
+		clock.drawClock(Application.currentClockState);
 	}
 
-	private getCurrentClockState(): ClockState {
+	private static drawClock(): void {
+		var time = Application.getCurrentTime();
+		if (!Application.currentClockState || !Application.currentClockState.sameTimeAs(time)) {
+			var clock = new Clock(Application.context2d, Application.unitSize);
+			Application.currentClockState = Application.getClockState(time);
+			clock.drawClock(Application.currentClockState);
+		}
+
+		window.requestAnimationFrame(Application.drawClock);
+	}
+
+	private static getClockState(time: Time): ClockState {
+		var clockStates = Application.timeDictionary[time.hour.toString()][time.minutes.toString()];
+		var index = Math.floor((Math.random() * clockStates.length));
+		return clockStates[index];
+	}
+
+	private static getCurrentTime(): Time {
 		var currentDate = new Date();
 		var hour = currentDate.getHours();
 		hour = (hour == 12 ? 12 : hour % 12);
 		var minutes = Math.floor(currentDate.getMinutes() / 5);
-		
-		var clockStates = this.timeDictionary[hour.toString()][minutes.toString()];
-		var index = Math.floor((Math.random() * clockStates.length));
-		return clockStates[index];
+
+		return { hour: hour, minutes: minutes };
 	}
 
 	private fillTimeDictionary(): void {
@@ -60,7 +79,7 @@ class Application {
 			var hour = state.getHour();
 			var minutes = state.getMinutes() / 5;
 
-			var time = this.timeDictionary[hour.toString()][minutes.toString()];
+			var time = Application.timeDictionary[hour.toString()][minutes.toString()];
 			if (time == null) continue;
 
 			time.push(state);
@@ -71,11 +90,11 @@ class Application {
 		var hours = this.getHours();
 		var minutes = this.getMinutes();
 
-		this.timeDictionary = {};
+		Application.timeDictionary = {};
 		for (var i1 = 0; i1 < hours.length; i1++) {
-			this.timeDictionary[i1.toString()] = {};
+			Application.timeDictionary[i1.toString()] = {};
 			for (var i2 = 0; i2 < minutes.length; i2++) {
-				this.timeDictionary[i1.toString()][i2.toString()] = [];
+				Application.timeDictionary[i1.toString()][i2.toString()] = [];
 			}
 		}
 	}

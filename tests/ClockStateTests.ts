@@ -70,14 +70,8 @@ describe("Only blue and green colors should count as minutes.", function() {
 });
 
 describe("getHour and getMinutes methods should return values based on square states.", function() {
-  var clockState = new ClockState(SquareState.Off, SquareState.Off, SquareState.Off, SquareState.Off, SquareState.Off);
-
   it("Test case: 0:50", function() {
-    clockState.upperSquareOne = SquareState.Off;
-    clockState.bottomSquareOne = SquareState.Off;
-    clockState.squareTwo = SquareState.Green;
-    clockState.squareThree = SquareState.Green;
-    clockState.squareFive = SquareState.Green;
+    var clockState = new ClockState(SquareState.Off, SquareState.Off, SquareState.Green, SquareState.Green, SquareState.Green);
 
     var hour = clockState.getHour();
     var minutes = clockState.getMinutes();
@@ -87,11 +81,7 @@ describe("getHour and getMinutes methods should return values based on square st
   });
 
   it("Test case: 8:35", function() {
-    clockState.upperSquareOne = SquareState.Off;
-    clockState.bottomSquareOne = SquareState.Off;
-    clockState.squareTwo = SquareState.Green;
-    clockState.squareThree = SquareState.Red;
-    clockState.squareFive = SquareState.Blue;
+    var clockState = new ClockState(SquareState.Off, SquareState.Off, SquareState.Green, SquareState.Red, SquareState.Blue);
 
     var hour = clockState.getHour();
     var minutes = clockState.getMinutes();

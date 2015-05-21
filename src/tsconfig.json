@@ -9,7 +9,7 @@
     },
     "files": [
         "extensions/EnumExtensions.ts",
-        "extensions/IDictionary.ts",        
+        "extensions/IDictionary.ts",
         "Square.ts",
         "SquareState.ts",        
         "ClockState.ts", 

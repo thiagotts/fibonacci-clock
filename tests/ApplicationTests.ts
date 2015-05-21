@@ -37,38 +37,38 @@ describe("Creation of time dictionary.", function() {
   application.createTimeDictionary();
 
   it("It must create 156 time combinations.", function() {
-    expect(DictionaryExtensions.getLength(application.timeDictionary)).toBe(13);
+    expect(DictionaryExtensions.getLength(Application.timeDictionary)).toBe(13);
 
     for (var index = 0; index < 13; index++) {
-      expect(DictionaryExtensions.getLength(application.timeDictionary[index])).toBe(12);
+      expect(DictionaryExtensions.getLength(Application.timeDictionary[index])).toBe(12);
     }
   });
 
   it("All hour values must be different.", function() {
     for (var index = 0; index < 13; index++) {
-      expect(application.timeDictionary[index.toString()]).not.toBeNull();
+      expect(Application.timeDictionary[index.toString()]).not.toBeNull();
     }
   });
 
   it("All minute values must be different.", function() {
     for (var index = 0; index < 60; index += 5) {
-      expect(application.timeDictionary[index.toString()]).not.toBeNull();
+      expect(Application.timeDictionary[index.toString()]).not.toBeNull();
     }
   });
 });
 
 describe("Filling the time dictionary.", function() {
   var application = new Application();
-  var dictionary = application.timeDictionary;
+  var dictionary = Application.timeDictionary;
 
   it("The dictionary must have clock states that match the time values.", function() {
-    for (var hourKey in application.timeDictionary) {
-      if (!application.timeDictionary.hasOwnProperty(hourKey)) continue;
-      var hourDictionary = application.timeDictionary[hourKey];
+    for (var hourKey in Application.timeDictionary) {
+      if (!Application.timeDictionary.hasOwnProperty(hourKey)) continue;
+      var hourDictionary = Application.timeDictionary[hourKey];
 
       for (var minuteKey in hourDictionary) {
         if (!hourDictionary.hasOwnProperty(minuteKey)) continue;
-        var states = application.timeDictionary[hourKey][minuteKey];
+        var states = Application.timeDictionary[hourKey][minuteKey];
 
         expect(states).not.toBeNull();
         expect(states.length).toBeGreaterThan(0);
@@ -79,7 +79,7 @@ describe("Filling the time dictionary.", function() {
           var minutes = parseInt(minuteKey, 10);
 
           expect(hour).toBe(state.getHour());
-          expect(minutes).toBe(state.getMinutes() / 5);
+          expect(minutes).toBe(state.getMinutes());
         }
       }
     }
