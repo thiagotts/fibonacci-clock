@@ -10,7 +10,6 @@ class Application {
 	public static currentClockState: ClockState;
 	private width: number;
 	private height: number;
-	private sizeFactor: number = 0.15;
 
 	constructor() {
 		this.setUpDimensions();
@@ -18,16 +17,17 @@ class Application {
 	}
 
 	private setUpDimensions(): void {
-		this.width = document.documentElement.clientWidth;
-		this.height = document.documentElement.clientHeight;
-		Application.unitSize = this.width < this.height ? (this.width * this.sizeFactor) : (this.height * this.sizeFactor);
+		this.width = window.innerWidth;
+		this.height = window.innerHeight;
+		Application.unitSize = this.width * 5 < this.height * 8 ?
+			(this.width * 0.094) : (this.height * 0.15);	
 	}
 
 	public start(): void {
 		var canvas = <HTMLCanvasElement>document.getElementById('canvas');
 		canvas.width = Application.unitSize * 8;
 		canvas.height = Application.unitSize * 5;
-		canvas.style.marginTop = ((this.height - (Application.unitSize * 5)) / 2) + "px";
+		canvas.style.marginTop =  ((this.height - (Application.unitSize * 5)) / 2) + "px";
 		canvas.style.marginLeft = ((this.width - (Application.unitSize * 8)) / 2) + "px";
 
 		Application.context2d = <CanvasRenderingContext2D>canvas.getContext('2d');
