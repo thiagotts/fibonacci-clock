@@ -7,12 +7,12 @@ class Square {
 		this.state = SquareState.Off;
 	}
 
-	public draw(context: CanvasRenderingContext2D): void {
+	public draw(context: CanvasRenderingContext2D, unitSize: number): void {
 		context.beginPath();
 		context.rect(this.xAxis, this.yAxis, this.length, this.length);
 		context.fillStyle = this.getColor();
 		context.fill();
-		context.lineWidth = 1;
+		context.lineWidth = unitSize * 0.015;
 		context.strokeStyle = 'black';
 		context.stroke();
 	}

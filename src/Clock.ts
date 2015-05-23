@@ -6,8 +6,10 @@ class Clock {
 	squareTwo: Square;
 	squareThree: Square;
 	squareFive: Square;
+	private unitSize: number;
 
 	constructor(public context: CanvasRenderingContext2D, unitSize: number) {
+		this.unitSize = unitSize;
 		this.upperSquareOne = new Square(unitSize * 2.2, unitSize * 0.2, unitSize);
 		this.bottomSquareOne = new Square(unitSize * 2.2, unitSize * 1.2, unitSize);
 		this.squareTwo = new Square(unitSize * 0.2, unitSize * 0.2, unitSize * 2);
@@ -25,6 +27,6 @@ class Clock {
 	
 	private drawSquare(square: Square, squareState: SquareState) {
 		square.state = squareState;
-		square.draw(this.context);		
+		square.draw(this.context, this.unitSize);		
 	}
 }
