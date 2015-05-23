@@ -1,6 +1,7 @@
 /// <reference path="extensions/EnumExtensions.ts"/>
 /// <reference path="extensions/IDictionary.ts"/>
 /// <reference path="SquareState.ts"/>
+/// <reference path="ClockFrame.ts"/>
 /// <reference path="Time.ts"/>
 
 class Application {
@@ -20,19 +21,20 @@ class Application {
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 		Application.unitSize = this.width * 5 < this.height * 8 ?
-			(this.width * 0.094) : (this.height * 0.15);	
+			(this.width * 0.094) : (this.height * 0.15);
 	}
 
 	public start(): void {
 		var canvas = <HTMLCanvasElement>document.getElementById('canvas');
-		canvas.width = Application.unitSize * 8;
-		canvas.height = Application.unitSize * 5;
-		canvas.style.marginTop =  ((this.height - (Application.unitSize * 5)) / 2) + "px";
-		canvas.style.marginLeft = ((this.width - (Application.unitSize * 8)) / 2) + "px";
+		canvas.width = Application.unitSize * 8.4;
+		canvas.height = Application.unitSize * 5.4;
+		canvas.style.marginTop = ((this.height - (canvas.height)) / 2) + "px";
+		canvas.style.marginLeft = ((this.width - (canvas.width)) / 2) + "px";
 
 		Application.context2d = <CanvasRenderingContext2D>canvas.getContext('2d');
 		Application.context2d.clearRect(0, 0, canvas.width, canvas.height);
 
+		this.drawClockFrame(canvas.width, canvas.height);
 		Application.drawClock();
 	}
 
@@ -42,6 +44,11 @@ class Application {
 
 		var clock = new Clock(Application.context2d, Application.unitSize);
 		clock.drawClock(Application.currentClockState);
+	}
+
+	private drawClockFrame(width: number, height: number): void {
+		var rect = new ClockFrame(0, 0, width, height);
+		rect.draw(Application.context2d);
 	}
 
 	private static drawClock(): void {

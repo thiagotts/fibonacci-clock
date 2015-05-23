@@ -11,6 +11,7 @@
         "extensions/EnumExtensions.ts",
         "extensions/IDictionary.ts",
         "Square.ts",
+        "ClockFrame.ts",
         "SquareState.ts",        
         "ClockState.ts", 
         "Clock.ts",
