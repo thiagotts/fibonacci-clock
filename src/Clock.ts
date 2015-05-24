@@ -18,15 +18,21 @@ class Clock {
 	}
 
 	public drawClock(clockState: ClockState): void {
-		this.drawSquare(this.upperSquareOne, clockState.upperSquareOne);
-		this.drawSquare(this.bottomSquareOne, clockState.bottomSquareOne);
-		this.drawSquare(this.squareTwo, clockState.squareTwo);
-		this.drawSquare(this.squareThree, clockState.squareThree);
-		this.drawSquare(this.squareFive, clockState.squareFive);
+		this.drawRegular(this.upperSquareOne, clockState.upperSquareOne);
+		this.drawRegular(this.bottomSquareOne, clockState.bottomSquareOne);
+		
+		this.squareTwo.state = clockState.squareTwo;
+		this.squareTwo.drawUpperLeft(this.context, this.unitSize);
+		
+		this.squareThree.state = clockState.squareThree;
+		this.squareThree.drawBottomLeft(this.context, this.unitSize);
+		
+		this.squareFive.state = clockState.squareFive;
+		this.squareFive.drawRight(this.context, this.unitSize);
 	}
 	
-	private drawSquare(square: Square, squareState: SquareState) {
+	private drawRegular(square: Square, squareState: SquareState) {
 		square.state = squareState;
-		square.draw(this.context, this.unitSize);		
+		square.drawRegular(this.context, this.unitSize);
 	}
 }
