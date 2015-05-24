@@ -10,7 +10,8 @@
     "files": [
         "extensions/EnumExtensions.ts",
         "extensions/IDictionary.ts",
-        "Square.ts",
+        "ColorPatterns.ts",
+        "Square.ts",        
         "ClockFrame.ts",
         "SquareState.ts",        
         "ClockState.ts", 
