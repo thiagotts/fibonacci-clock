@@ -1,14 +1,15 @@
 /// <reference path="tsd/jasmine.d.ts"/>
 /// <reference path="../src/Application.ts"/>
 /// <reference path="../src/ClockState.ts"/>
+/// <reference path="../src/Clock.ts"/>
 /// <reference path="../src/extensions/DictionaryExtensions.ts"/>
 
 describe("Generation of clock states.", function() {
   var application = new Application();
   var clockStates: ClockState[] = application.createClockStates();
 
-  it("It must create 1024 clock states.", function() {
-    expect(clockStates.length).toBe(1024);
+  it("It must create 8192 clock states.", function() {
+    expect(clockStates.length).toBe(8192);
   });
 
   it("All clock states must be different.", function() {
@@ -22,7 +23,10 @@ describe("Generation of clock states.", function() {
           element.bottomSquareOne === state.bottomSquareOne &&
           element.squareTwo === state.squareTwo &&
           element.squareThree === state.squareThree &&
-          element.squareFive === state.squareFive) {
+          element.squareFive === state.squareFive &&
+          element.upperFrameOne === state.upperFrameOne &&
+          element.bottomFrameOne === state.bottomFrameOne &&
+          element.frameTwo === state.frameTwo) {
           count++;
         }
       }
@@ -36,11 +40,11 @@ describe("Creation of time dictionary.", function() {
   var application = new Application();
   application.createTimeDictionary();
 
-  it("It must create 156 time combinations.", function() {
+  it("It must create 780 time combinations.", function() {
     expect(DictionaryExtensions.getLength(application.timeDictionary)).toBe(13);
 
     for (var index = 0; index < 13; index++) {
-      expect(DictionaryExtensions.getLength(application.timeDictionary[index])).toBe(12);
+      expect(DictionaryExtensions.getLength(application.timeDictionary[index])).toBe(60);
     }
   });
 
@@ -51,7 +55,7 @@ describe("Creation of time dictionary.", function() {
   });
 
   it("All minute values must be different.", function() {
-    for (var index = 0; index < 60; index += 5) {
+    for (var index = 0; index < 60; index++) {
       expect(application.timeDictionary[index.toString()]).not.toBeNull();
     }
   });

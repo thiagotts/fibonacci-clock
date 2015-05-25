@@ -1,0 +1,4 @@
+enum FrameState {
+	Off,
+	On
+}

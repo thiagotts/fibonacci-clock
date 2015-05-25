@@ -1,11 +1,13 @@
 /// <reference path="SquareState.ts"/>
+/// <reference path="FrameState.ts"/>
 
 class ClockState {
 	private hour: number;
 	private minutes: number;
 
 	constructor(public upperSquareOne: SquareState, public bottomSquareOne: SquareState,
-		public squareTwo: SquareState, public squareThree: SquareState, public squareFive: SquareState) { }
+		public squareTwo: SquareState, public squareThree: SquareState, public squareFive: SquareState,
+		public upperFrameOne: FrameState, public bottomFrameOne: FrameState, public frameTwo: FrameState) { }
 
 
 	public getHour(): number {
@@ -24,12 +26,16 @@ class ClockState {
 		if (this.minutes) return this.minutes;
 		
 		this.minutes = 0;
-		this.minutes += this.countAsMinutes(this.upperSquareOne) ? 1 : 0;
-		this.minutes += this.countAsMinutes(this.bottomSquareOne) ? 1 : 0;
-		this.minutes += this.countAsMinutes(this.squareTwo) ? 2 : 0;
-		this.minutes += this.countAsMinutes(this.squareThree) ? 3 : 0;
-		this.minutes += this.countAsMinutes(this.squareFive) ? 5 : 0;
-		return this.minutes * 5;
+		this.minutes += 5 * (this.countAsMinutes(this.upperSquareOne) ? 1 : 0);
+		this.minutes += 5 * (this.countAsMinutes(this.bottomSquareOne) ? 1 : 0);
+		this.minutes += 5 * (this.countAsMinutes(this.squareTwo) ? 2 : 0);
+		this.minutes += 5 * (this.countAsMinutes(this.squareThree) ? 3 : 0);
+		this.minutes += 5 * (this.countAsMinutes(this.squareFive) ? 5 : 0);
+		this.minutes += this.upperFrameOne == FrameState.On ? 1 : 0;
+		this.minutes += this.bottomFrameOne == FrameState.On ? 1 : 0;
+		this.minutes += this.frameTwo == FrameState.On ? 2 : 0;
+		
+		return this.minutes ;
 	}
 
 	public sameTimeAs(time: Time): boolean {

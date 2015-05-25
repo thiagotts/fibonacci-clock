@@ -72,7 +72,7 @@ class Application {
 		var currentDate = new Date();
 		var hour = currentDate.getHours();
 		hour = (hour == 12 ? 12 : hour % 12);
-		var minutes = Math.floor(currentDate.getMinutes() / 5);
+		var minutes = currentDate.getMinutes();
 
 		return { hour: hour, minutes: minutes };
 	}
@@ -84,7 +84,7 @@ class Application {
 		for (var index = 0; index < clockStates.length; index++) {
 			var state = clockStates[index];
 			var hour = state.getHour();
-			var minutes = state.getMinutes() / 5;
+			var minutes = state.getMinutes();
 
 			var time = this.timeDictionary[hour.toString()][minutes.toString()];
 			if (time == null) continue;
@@ -111,6 +111,8 @@ class Application {
 		var index = 0;
 
 		var stateValues = EnumExtensions.getValues(SquareState);
+		var frameValues = EnumExtensions.getValues(FrameState);
+
 		for (var i1 = 0; i1 < stateValues.length; i1++) {
 			var upperSquareOneState = stateValues[i1];
 			for (var i2 = 0; i2 < stateValues.length; i2++) {
@@ -121,14 +123,25 @@ class Application {
 						var squareThreeState = stateValues[i4];
 						for (var i5 = 0; i5 < stateValues.length; i5++) {
 							var squareFiveState = stateValues[i5];
-							states[index] = new ClockState(
-								upperSquareOneState,
-								bottomSquareOneState,
-								squareTwoState,
-								squareThreeState,
-								squareFiveState
-								);
-							index++;
+							for (var i6 = 0; i6 < frameValues.length; i6++) {
+								var upperFrameOne = frameValues[i6];
+								for (var i7 = 0; i7 < frameValues.length; i7++) {
+									var bottomFrameOne = frameValues[i7];
+									for (var i8 = 0; i8 < frameValues.length; i8++) {
+										var frameTwo = frameValues[i8];
+										states[index] = new ClockState(
+											upperSquareOneState,
+											bottomSquareOneState,
+											squareTwoState,
+											squareThreeState,
+											squareFiveState,
+											upperFrameOne,
+											bottomFrameOne,
+											frameTwo);
+										index++;
+									}
+								}
+							}
 						}
 					}
 				}
@@ -149,8 +162,8 @@ class Application {
 
 	private getMinutes(): number[] {
 		var minutes: number[] = [];
-		for (var index = 0; index < 12; index++) {
-			minutes[index] = index * 5;
+		for (var index = 0; index < 60; index++) {
+			minutes[index] = index;
 		}
 
 		return minutes;

@@ -18,21 +18,29 @@ class Clock {
 	}
 
 	public drawClock(clockState: ClockState): void {
-		this.drawRegular(this.upperSquareOne, clockState.upperSquareOne);
-		this.drawRegular(this.bottomSquareOne, clockState.bottomSquareOne);
-		
-		this.squareTwo.state = clockState.squareTwo;
-		this.squareTwo.drawUpperLeft(this.context, this.unitSize);
-		
 		this.squareThree.state = clockState.squareThree;
 		this.squareThree.drawBottomLeft(this.context, this.unitSize);
-		
+
 		this.squareFive.state = clockState.squareFive;
 		this.squareFive.drawRight(this.context, this.unitSize);
+
+		this.drawRegular(this.upperSquareOne, clockState.upperSquareOne, clockState.upperFrameOne);
+		this.drawRegular(this.bottomSquareOne, clockState.bottomSquareOne, clockState.bottomFrameOne);
+
+		this.squareTwo.state = clockState.squareTwo;
+		this.squareTwo.drawUpperLeft(this.context, this.unitSize, clockState.frameTwo);
+
+		if (clockState.upperFrameOne == FrameState.On) {
+			this.drawRegular(this.upperSquareOne, clockState.upperSquareOne, clockState.upperFrameOne);
+		}
+
+		if (clockState.bottomFrameOne == FrameState.On) {
+			this.drawRegular(this.bottomSquareOne, clockState.bottomSquareOne, clockState.bottomFrameOne);
+		}
 	}
-	
-	private drawRegular(square: Square, squareState: SquareState) {
+
+	private drawRegular(square: Square, squareState: SquareState, frameState: FrameState) {
 		square.state = squareState;
-		square.drawRegular(this.context, this.unitSize);
+		square.drawRegular(this.context, this.unitSize, frameState);
 	}
 }
