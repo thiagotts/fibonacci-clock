@@ -7,12 +7,33 @@
         margin: 0px;
         padding: 0px;
         background: #f2f2f2;
+        color: #626262;     
+      }
+      a { 
+        color: #626262;
+        text-decoration: none;
+        font-family: 'FontAwesome';
+        font-size: 85%;
+      }
+      .footer {   
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-bottom: 0.4%;    
+        text-align: center;
       }
     </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   
   <body onresize="application.refresh();">
     <canvas id="canvas"></canvas>
+    <div class="footer">
+      <a href="http://tts.eng.br"><i class="fa fa-align-justify"></i> Blog</a>
+      &nbsp;&#9830;&nbsp;
+      <a href="https://github.com/thiagotts/fibonacci-clock"><i class="fa fa-github"></i> GitHub</a>        
+    </div>
     <script src="js/fibonacci-clock.js"></script>
     <script>
       var application = new Application();
