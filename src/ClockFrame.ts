@@ -19,10 +19,7 @@ class ClockFrame {
 		context.quadraticCurveTo(this.xAxis, this.yAxis, this.xAxis + this.radius, this.yAxis);
 		context.closePath();
 
-		var imageObj = new Image();
-		imageObj.src = ColorPatterns.getFrameColor();
-		var pattern = context.createPattern(imageObj, 'repeat');
-
+		var pattern = context.createPattern(ColorPatterns.FrameColor.image, 'repeat');
 		context.fillStyle = pattern;
 		context.fill();
 		context.strokeStyle = pattern;

@@ -59,18 +59,13 @@ class Square {
 	}
 
 	private fillSquare(context: CanvasRenderingContext2D): void {
-		var imageObj = new Image();
-		imageObj.src = this.getColor();
-		var pattern = context.createPattern(imageObj, 'repeat');
-
+		var pattern = context.createPattern(this.getColor(), 'repeat');
 		context.fillStyle = pattern;
 		context.fill();
 	}
 
 	private drawRegularStroke(context: CanvasRenderingContext2D, unitSize: number): void {
-		var imageObj = new Image();
-		imageObj.src = ColorPatterns.getBlack();
-		var pattern = context.createPattern(imageObj, 'repeat');
+		var pattern = context.createPattern(ColorPatterns.Black.image, 'repeat');
 
 		context.lineWidth = unitSize * 0.045;
 		context.strokeStyle = pattern;
@@ -78,28 +73,26 @@ class Square {
 	}
 	
 	private drawFrameStroke(context: CanvasRenderingContext2D, unitSize: number, frameState: FrameState): void {
-		var imageObj = new Image();
-		imageObj.src = frameState == FrameState.On ? ColorPatterns.getWhite() : ColorPatterns.getBlack();
-		var pattern = context.createPattern(imageObj, 'repeat');
+		var pattern = context.createPattern(frameState == FrameState.On ? ColorPatterns.White.image : ColorPatterns.Black.image, 'repeat');
 
 		context.lineWidth = unitSize * 0.045;
 		context.strokeStyle = pattern;
 		context.stroke();
 	}	
 
-	private getColor(): string {
+	private getColor(): HTMLImageElement {
 		switch (this.state) {
 			case SquareState.Off:
-				return ColorPatterns.getGrey();
+				return ColorPatterns.Grey.image;
 
 			case SquareState.Blue:
-				return ColorPatterns.getBlue();
+				return ColorPatterns.Blue.image;
 
 			case SquareState.Red:
-				return ColorPatterns.getRed();
+				return ColorPatterns.Red.image;
 
 			case SquareState.Green:
-				return ColorPatterns.getGreen();
+				return ColorPatterns.Green.image;
 		}
 	}
 

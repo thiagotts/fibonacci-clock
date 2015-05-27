@@ -15,6 +15,7 @@ class Application {
 	constructor() {
 		this.setUpDimensions();
 		this.fillTimeDictionary();
+		ColorPatterns.initialize();
 	}
 
 	private setUpDimensions(): void {
@@ -24,7 +25,12 @@ class Application {
 			(this.width * 0.094) : (this.height * 0.15);
 	}
 
-	public start(): void {
+	public start = () => {
+		if(!ColorPatterns.allPatternsAreLoaded()) {
+			window.requestAnimationFrame(this.start);
+			return;	
+		}
+		
 		var canvas = <HTMLCanvasElement>document.getElementById('canvas');
 		canvas.width = this.unitSize * 8.4;
 		canvas.height = this.unitSize * 5.4;
