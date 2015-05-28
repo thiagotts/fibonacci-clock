@@ -46,9 +46,10 @@
         swal({
           title: "<i class=\"fa fa-code fa-2x\"></i>",
           text: "Paste the code below to embed the clock on your site:" +
-          "<textarea style=\"width: 100%;\" rows=\"5\"><div id=\"fibonacci-clock-container\"><canvas id=\"fibonacci-clock-canvas\"><script src=\"js/fibonacci-clock.js\"><//script><script>var application = new Application();application.start();<//script></canvas></div></textarea>",
+          "<textarea id=\"fibonacci-clock-embed\" style=\"width: 100%;\" rows=\"5\"><div id=\"fibonacci-clock-container\"><canvas id=\"fibonacci-clock-canvas\"></canvas></div><script src=\"http://tts.eng.br/assets/own/fibonacci-clock/fibonacci-clock.min.js\">" + "</" +"script><script>var application = new Application();application.start();" + "</" + "script></textarea>",
           html: true 
         });
+        document.getElementById("fibonacci-clock-embed").select();
       }
     </script>
   </body>

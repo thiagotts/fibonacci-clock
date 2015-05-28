@@ -21,8 +21,8 @@ class Application {
 	private setUpDimensions(): void {
 		var container = document.getElementById('fibonacci-clock-container');
 		if (container) {
-			this.width = document.getElementById('fibonacci-clock-container').offsetWidth;
-			this.height = document.getElementById('fibonacci-clock-container').offsetHeight;
+			this.width = container.offsetWidth;
+			this.height = container.offsetHeight;
 		}
 		else {
 			this.width = window.innerWidth;
