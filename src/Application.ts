@@ -19,19 +19,27 @@ class Application {
 	}
 
 	private setUpDimensions(): void {
-		this.width = window.innerWidth;
-		this.height = window.innerHeight;
+		var container = document.getElementById('fibonacci-clock-container');
+		if (container) {
+			this.width = document.getElementById('fibonacci-clock-container').offsetWidth;
+			this.height = document.getElementById('fibonacci-clock-container').offsetHeight;
+		}
+		else {
+			this.width = window.innerWidth;
+			this.height = window.innerHeight;
+		}
+
 		this.unitSize = this.width * 5 < this.height * 8 ?
 			(this.width * 0.094) : (this.height * 0.15);
 	}
 
 	public start = () => {
-		if(!ColorPatterns.allPatternsAreLoaded()) {
+		if (!ColorPatterns.allPatternsAreLoaded()) {
 			window.requestAnimationFrame(this.start);
-			return;	
+			return;
 		}
-		
-		var canvas = <HTMLCanvasElement>document.getElementById('canvas');
+
+		var canvas = <HTMLCanvasElement>document.getElementById('fibonacci-clock-canvas');
 		canvas.width = this.unitSize * 8.4;
 		canvas.height = this.unitSize * 5.4;
 		canvas.style.marginTop = ((this.height - (canvas.height)) / 2) + "px";
