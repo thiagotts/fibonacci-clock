@@ -1,0 +1,9 @@
+{
+  "name": "Fibonacci-Clock-Tests",
+  "version": "0.0.1",
+  "homepage": "http://tts.eng.br/fibonacci-clock",
+  "private": true,
+  "dependencies": {
+    "jasmine": "~2.2.0"
+  }
+}
