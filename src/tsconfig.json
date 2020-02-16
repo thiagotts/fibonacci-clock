@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "amd",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
@@ -11,10 +11,10 @@
         "extensions/EnumExtensions.ts",
         "extensions/IDictionary.ts",
         "ColorPatterns.ts",
-        "Square.ts",        
+        "Square.ts",
         "ClockFrame.ts",
-        "SquareState.ts",        
-        "ClockState.ts", 
+        "SquareState.ts",
+        "ClockState.ts",
         "Clock.ts",
         "Application.ts"
     ]
