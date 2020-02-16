@@ -1,57 +1,59 @@
 <!DOCTYPE HTML>
 <html>
-  
-  <head>
-  	<meta charset="utf-8" />
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-        background: #f2f2f2;
-        color: #626262;     
-      }
-      a { 
-        color: #626262;
-        text-decoration: none;
-        font-family: 'FontAwesome';
-        font-size: 85%;
-      }
-      .footer {   
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding-bottom: 0.4%;    
-        text-align: center;
-      }
-    </style>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  </head>
-  
-  <body onresize="application.refresh();">
-    <canvas id="fibonacci-clock-canvas"></canvas>
-    <div class="footer">
-      <a href="https://github.com/thiagotts/fibonacci-clock"><i class="fa fa-github"></i> GitHub</a>&nbsp;&nbsp;&nbsp;
-      <a style="cursor: pointer;" onclick="showEmbed();"><i class="fa fa-code"></i> Embed</a>
-    </div>
-    <script src="js/fibonacci-clock.js"></script>
-    <script>
-      var application = new Application();
-      application.start();
-    </script>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.js"></script>
-    <script>
-      function showEmbed() {
-        swal({
-          title: "<i class=\"fa fa-code fa-2x\"></i>",
-          text: "Paste the code below to embed the clock on your site:" +
-          "<textarea id=\"fibonacci-clock-embed\" style=\"width: 100%;\" rows=\"5\"><div id=\"fibonacci-clock-container\"><canvas id=\"fibonacci-clock-canvas\"></canvas></div><script src=\"http://tts.eng.br/assets/own/fibonacci-clock/fibonacci-clock.min.js\">" + "</" +"script><script>var application = new Application();application.start();" + "</" + "script></textarea>",
-          html: true 
-        });
-        document.getElementById("fibonacci-clock-embed").select();
-      }
-    </script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      background: #f2f2f2;
+      color: #626262;
+    }
+
+    a {
+      color: #626262;
+      text-decoration: none;
+      font-family: 'FontAwesome';
+      font-size: 85%;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-bottom: 0.4%;
+      text-align: center;
+    }
+  </style>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body onresize="application.refresh();">
+  <canvas id="fibonacci-clock-canvas"></canvas>
+  <div class="footer">
+    <a href="//github.com/thiagotts/fibonacci-clock"><i class="fa fa-github"></i> GitHub</a>&nbsp;&nbsp;&nbsp;
+    <a style="cursor: pointer;" onclick="showEmbed();"><i class="fa fa-code"></i> Embed</a>
+  </div>
+  <script src="js/fibonacci-clock.js"></script>
+  <script>
+    var application = new Application();
+    application.start();
+  </script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.js"></script>
+  <script>
+    function showEmbed() {
+      swal({
+        title: "<i class=\"fa fa-code fa-2x\"></i>",
+        text: "Paste the code below to embed the clock on your site:" +
+          "<textarea id=\"fibonacci-clock-embed\" style=\"width: 100%;\" rows=\"5\"><div id=\"fibonacci-clock-container\"><canvas id=\"fibonacci-clock-canvas\"></canvas></div><script src=\"https://s3.amazonaws.com/tts.files/js/fibonacci-clock.js\">" + "</" + "script><script>var application = new Application();application.start();" + "</" + "script></textarea>",
+        html: true
+      });
+      document.getElementById("fibonacci-clock-embed").select();
+    }
+  </script>
+</body>
 
 </html>
