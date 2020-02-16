@@ -7,7 +7,7 @@
 This is a responsive HTML5 version of [Philippe Chrétien's Fibonacci clock](https://www.kickstarter.com/projects/basbrun/fibonacci-clock-an-open-source-clock-for-nerds-wit?ref=category_newest) written in TypeScript and featuring an exact minutes count.
 
 <p align="center">
-  [See it live](https://fibonacci.thiago.work)
+   <a href="https://fibonacci.thiago.work">See it live</a> 
 </p>
 
 ## How do I tell time?
