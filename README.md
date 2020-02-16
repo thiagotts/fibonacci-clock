@@ -1,14 +1,12 @@
 # Fibonacci clock
 
 <p align="center">
-  <img src="https://s3.amazonaws.com/tts.files/fibonacci-clock.gif" alt="Fibonacci Clock"/>
+  <a href="https://fibonacci.thiago.work">
+    <img src="https://s3.amazonaws.com/tts.files/fibonacci-clock.gif" alt="Fibonacci Clock"/>
+  </a> 
 </p>
 
-This is a responsive HTML5 version of [Philippe Chrétien's Fibonacci clock](https://www.kickstarter.com/projects/basbrun/fibonacci-clock-an-open-source-clock-for-nerds-wit?ref=category_newest) written in TypeScript and featuring an exact minutes count.
-
-<p align="center">
-  [See it live](https://fibonacci.thiago.work)
-</p>
+This is a responsive HTML5 version of [Philippe Chrétien's Fibonacci clock](https://www.kickstarter.com/projects/basbrun/fibonacci-clock-an-open-source-clock-for-nerds-wit?ref=category_newest) written in TypeScript and featuring an exact minutes count. Click on the clock above to see it live.
 
 ## How do I tell time?
 
@@ -33,7 +31,7 @@ You might have noticed the rules to tell time on this clock allow a single time 
 
 ## Embed it
 
-Clicking on the embed link at the bottom of the [clock's page](https://fibonacci.thiago.work) will give you a code snippet that can be used to embed the clock on your site.
+Clicking on the embed link at the bottom of the clock's page will give you a code snippet that can be used to embed the clock on your site.
 
 ## License
 
